@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.search-container {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0, 10px, 30px, rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+input {
+    width: 100%;
+    padding: 16px 8px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.results-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid rgba(0,0,0,0.8);
+}
+
+.results-list li {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.results-list li:hover, .results-list li:selected {
+    background: #0078d4;
+    color: white;
+}
+
+.badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 12px;
+    background: #e1dfdd;
+    color: #323130;
+    font-weight: bold;
+}
+
+.selected .badge {
+    background: rgba(255,255,255,0.3);
+    color: white;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.path {
+    font-size: 11px;
+    opacity: 0.7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
