@@ -166,6 +166,8 @@ ipcMain.handle('open-item', async (event, item) => {
         exec(`explorer.exe shell:AppsFolder\\${item.Path}`);
     } else if (item.Type === 'file') {
         shell.openPath(item.Path);
+    } else if (item.Type === 'web') {
+        shell.openExternal(item.Path);
     }
 
     searchWindow.hide();
