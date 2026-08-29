@@ -1,0 +1,47 @@
+/* Container for the terminal window */
+pre.language-shell, 
+pre.language-bash, 
+pre.language-sh {
+  background-color: #141414;
+  border-radius: 6px;
+  border: 1px solid #2d2d2d;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* The code text formatting */
+pre[class*="language-"] code {
+  font-family: 'Fira Code', 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #e6e6e6;
+  background: none;
+  padding: 0;
+}
+
+/* Creating individual rows for lines of code */
+pre.language-shell code .line,
+pre.language-bash code .line {
+  display: block;
+  position: relative;
+  padding-left: 1rem;
+}
+
+/* The non-selectable shell prompt ($) visual anchor */
+pre.language-shell code .line::before,
+pre.language-bash code .line::before {
+  position: absolute;
+  left: 0;
+  color: #00ff66; /* Vibrant terminal green */
+  font-weight: bold;
+  opacity: 0.75;
+  user-select: none; /* Prevents the user from accidentally highlighting the $ */
+  pointer-events: none;
+}
+
+/* Custom styling for comments inside the shell */
+pre.language-shell .comment,
+pre.language-bash .comment {
+  color: #7a7a7a;
+  font-style: italic;
+}

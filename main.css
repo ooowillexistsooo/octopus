@@ -53,6 +53,11 @@ input {
     font-weight: bold;
 }
 
+.results-list li:has(.badge:contains('web')) .badge,
+.badge-web { background: #4285f4; color: white; }
+
+.badge-calc { background: #107c41; color: white; }
+
 .selected .badge {
     background: rgba(255,255,255,0.3);
     color: white;

@@ -20,7 +20,11 @@ function findEverything() {
     }
 
     try {
-        return execFileSync('where.exe', ['es.exe'], {encoding: 'utf8'}).trim().split(/\r?\n/)[0] || null;
+        const stdout = execFileSync('where.exe', ['es.exe'], {
+            encoding: 'utf8',
+            stdio: ['pipe', 'pipe', 'ignore']
+        });
+        return stdout.trim().split(/\r?\n/)[0] || null;
     } catch {
         return null;
     }
@@ -139,7 +143,10 @@ ipcMain.handle('search-query', async (event, query) => {
         }));
 
     const everything = findEverything();
-    if (!everything) return searchWindowsFiles(query, appResults);
+    if (!everything) {
+        if (/[+\-*/%^=]/.test(query)) return appResults;
+        return searchWindowsFiles(query, appResults);
+    }
 
     return new Promise((resolve) => {
         execFile(everything, ['-n', '5', '-path', process.env.USERPROFILE || 'C:\\Users', query], {
@@ -147,6 +154,7 @@ ipcMain.handle('search-query', async (event, query) => {
             maxBuffer: 1024 * 1024
         }, (err, stdout) => {
             if (err || !stdout.trim()) {
+                if (/[+\-*/%^=]/.test(query)) return resolve(appResults);
                 searchWindowsFiles(query, appResults).then(resolve);
                 return;
             }
